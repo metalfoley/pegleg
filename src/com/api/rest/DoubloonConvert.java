@@ -1,4 +1,4 @@
-package com.example.rest;
+package com.api.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -23,8 +23,6 @@ public class DoubloonConvert {
 		jsonObject.put("doubloon", doubloon); 
 		jsonObject.put("dollar", dollar);
  
-		
-		String result = "@Produces(\"application/json\") Output: \n\nDoubloon to Dollar Converter: \n\n" + jsonObject;
 		return Response.status(200).entity(jsonObject.toString()).type(MediaType.APPLICATION_JSON_TYPE).build();
 	  }
 }

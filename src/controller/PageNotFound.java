@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class doubloonToDollar
+ * Servlet implementation class PageNotFound
  */
-@WebServlet("/convert")
-public class doubloonToDollar extends HttpServlet {
+@WebServlet("/404")
+public class PageNotFound extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public doubloonToDollar() {
+    public PageNotFound() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,8 @@ public class doubloonToDollar extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/doubloonConvert.jsp").forward(request, response);
+		request.setAttribute("title", "Yarr...Page Not Found Matey!");
+		request.getRequestDispatcher("/WEB-INF/404.jsp").forward(request, response);
 	}
 
 	/**

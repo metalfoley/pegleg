@@ -1,5 +1,31 @@
 $(document).ready(function(){
 	
+	if($(".allPirates").length > 0) {
+		$(".allPirates").hide();
+		
+			$.ajax({
+				
+				url: "http://localhost:8080/RestExample/api/getpirates",
+				success: function(data) {
+					var table;
+					$.each(data.Pirates[0], function(i, item) {
+						table += "<tr>";
+						table += "<td>"+ item.ID +"</td>";
+						table += "<td>"+ item.firstName +"</td>";
+						table += "<td>"+ item.lastName +"</td>";
+						table += "<td>"+ item.shipName +"</td>";
+						table += "<td>"+ item.pirateName +"</td>";
+						table += "<td><a href='edit?id="+item.ID+"'<button class='btn btn-danger btn-sm'>Edit</button></td>";
+						table += "</tr>";
+					});
+					$(".allPirates tbody").html(table);
+					$('.progress').fadeOut();
+					$(".allPirates").fadeIn();	
+				},
+			});
+		}
+
+	
 	/*************************************************************
 	    	Gets the dollar value of the doubloons entered 
 	 *************************************************************/

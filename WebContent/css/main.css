@@ -51,6 +51,15 @@ video#bgvid {
 
 video { display: block; }
 
+nav .container-fluid {
+	margin: 0 1rem;
+}
+
+.navbar-brand, #mainbg h1, .modal-title {
+	color: #3E402D;
+	font-family: 'tradewinds', Arial, sans-serif;
+}
+
 #maincontainer {
 	height: 90%;
 	-webkit-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
@@ -58,18 +67,58 @@ video { display: block; }
 	        box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
 }
 
-#mainbg {
-	width: 85%;
-	height: 100%;
-	padding: 2rem;
-	background-color: rgba(255,255,255,1);
-	border-radius: 1rem;
-	margin: 0 auto;
+#mainbg h1 {
+	text-shadow: 1px 1px 1px #D7B594;
 }
 
-#mainbg h1 {
-	color: #3E402D;
-	font-family: 'tradewinds', Arial, sans-serif;
+#mainbg {
+	width: 85%;
+	background-color: rgba(255,255,255,1);
+	border-radius: 1rem;
+	margin: 2rem auto;
+	box-shadow: 3px 3px 6px 2px #262626;
+	overflow: hidden;
+	background-color: #D7B594;
+}
+
+#mainbg img[src="img/logo.png"] {
+	width: 7%;
+  	margin-right: 1.5rem;
+}
+
+.mainHead, .mainBody {
+	padding: 1rem 2rem;
+}
+
+.mainHead {
+	background-color: #BA7A48;
+}
+
+.mainHead p {
+	font-size: 2rem;
+}
+
+.mainBody h3 {
+	text-align: center;
+}
+
+.btn-convert {
+	display: block;
+	margin: 0 auto 3rem;
+}
+
+.table-striped>tbody>tr:nth-child(odd) {
+	background-color: #BA7A48;
+  	color: #FFF8F1;
+}
+
+/*************************************************************
+							CONVERTER
+*************************************************************/
+
+#conversion {
+	margin-top: .75rem;
+	color: #542D2D;
 }
 
 /*************************************************************
