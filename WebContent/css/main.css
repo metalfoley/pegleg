@@ -1,0 +1,129 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+@font-face{ 
+	font-family: 'tradewinds';
+	src: url('../fonts/tradewinds.eot');
+	src: url('../fonts/tradewinds.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/tradewinds.woff') format('woff'),
+	     url('../fonts/tradewinds.ttf') format('truetype'),
+	     url('../fonts/tradewinds.svg#webfont') format('svg');
+}
+
+@font-face{ 
+	font-family: 'goonies';
+	src: url('../fonts/goonies.eot');
+	src: url('../fonts/goonies.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/goonies.woff') format('woff'),
+	     url('../fonts/goonies.ttf') format('truetype'),
+	     url('../fonts/goonies.svg#webfont') format('svg');
+}
+
+* {
+
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+	padding-top: 0px;
+}
+
+video#bgvid {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	background: url(img/bg.png) no-repeat;
+	background-size: cover;
+}
+
+video { display: block; }
+
+#maincontainer {
+	height: 90%;
+	-webkit-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+	   -moz-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+	        box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+#mainbg {
+	width: 85%;
+	height: 100%;
+	padding: 2rem;
+	background-color: rgba(255,255,255,1);
+	border-radius: 1rem;
+	margin: 0 auto;
+}
+
+#mainbg h1 {
+	color: #3E402D;
+	font-family: 'tradewinds', Arial, sans-serif;
+}
+
+/*************************************************************
+							404
+*************************************************************/
+
+#sloth {
+	font-family: 'goonies', Arial, sans-serif;
+	width: 80%;
+	margin: 0 auto;
+}
+
+#sloth h1, #sloth p {
+	color: #FA2F35;
+}
+
+#sloth h1 {
+	word-spacing: -2rem;
+}
+
+#sloth h1 span {
+	color: #4BACFD;
+}
+
+#sloth p {
+	word-spacing: -.75rem;
+}
+
+#sloth p a {
+	cursor: pointer;
+}
+
+#sloth p a:hover {
+	text-decoration: none;
+}
+
+#sloth img {
+	width: 100%;
+}
+
+
+@media screen and (max-device-width: 800px) {
+body { background: url(img/bg.png) #000 no-repeat center center fixed; }
+#bgvid { display: none; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
