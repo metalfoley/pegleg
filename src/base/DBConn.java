@@ -3,8 +3,8 @@ import java.sql.*;
 
 public class DBConn {
 
-	static private String connectionString = "jdbc:jtds:sqlserver://PC20141:1433/bms;instance=MSSQLServer";
-	static private String connString =  "jdbc:jtds:sqlserver://PC20141:1433/bms;instance=MSSQLServer";
+	static private String connectionString = "jdbc:jtds:sqlserver://WIN-9UKE1QIC329:1433/bms;instance=MSSQLServer";
+	static private String connString =  "jdbc:jtds:sqlserver://WIN-9UKE1QIC329:1433/bms;instance=MSSQLServer";
 	static private String userName = "sbyington";
 	static private String password = "Catalyst123";
 	static private ResultSet rs;

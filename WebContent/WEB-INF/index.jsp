@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="../includes/header.jsp" %>
-		
+	<body ng-app="pirateApp">
         <div class="container col-md-12" id="maincontainer">
             <div id="mainbg">
             	<div class="mainHead clearfix">
 	            	<h1 class="pull-right">Ahoy Capatin WoodenLeg!</h1>
 	            	<p><img src="img/logo.png" alt="Logo" />Booty Management System</p>
             	</div>
-            	<div class="mainBody">
+            	<div class="mainBody" ng-controller="pirateCtrl">
+            		<h1>{{message}}</h1>
             		<h3>Total Doubloons = 598<span></span></h3>
             		<button type="button" class="btn btn-danger btn-sm btn-convert" data-toggle="modal" data-target="#myModal">
 					  Convert Ye' Ol' Booty
@@ -53,10 +54,10 @@
 		      <div class="modal-body">
 		        <form>
 					<label for="dtod">Doubloons: </label>
-					<input type="text" name="dtod" id="dtod"/>
+					<input type="text" name="dtod" id="dtod" ng-model="number"/>
 					<button type="submit" id="getConversion">Submit</button>
 				</form>
-				<p id="conversion"></p>
+				<p id="conversion">{{number}}</p>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

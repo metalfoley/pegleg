@@ -21,10 +21,10 @@ public class GetPirates {
 	  @Produces("application/json")
 	  public Response doubloonToDollarInput() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
-		JSONArray ja = new JSONArray();
+		//JSONArray ja = new JSONArray();
 		DaoPirate dp = new DaoPirate();
-		ja.put(dp.getAllPirates());
-		jsonObject.put("Pirates", ja); 
+		//ja.put(dp.getAllPirates());
+		jsonObject.put("pirates", dp.getAllPirates()); 
  
 		return Response.status(200).entity(jsonObject.toString()).type(MediaType.APPLICATION_JSON_TYPE).build();
 	  }
