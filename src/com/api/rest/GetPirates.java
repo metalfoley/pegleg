@@ -19,7 +19,7 @@ public class GetPirates {
  
 	  @GET
 	  @Produces("application/json")
-	  public Response doubloonToDollarInput() throws JSONException {
+	  public Response getPiratesResponse() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
 		//JSONArray ja = new JSONArray();
 		DaoPirate dp = new DaoPirate();
