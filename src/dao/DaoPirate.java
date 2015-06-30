@@ -19,7 +19,7 @@ public class DaoPirate {
 	 * Get all the pirates in the db
 	 * @return
 	 */
-	public ArrayList<Pirate> getAllPirates() {
+	public static ArrayList<Pirate> getAllPirates() {
 		DBConn.openConn();
 		ResultSet rs = DBConn.query("SELECT * FROM Pirate");
 		return ExtractPirate.extractAllPirates(rs);
@@ -78,5 +78,21 @@ public class DaoPirate {
 		p.setShipName("");
 		p.setPirateName("");
 		return p;
+	}
+	
+	/**
+	 * Get number of columns
+	 */
+	public static int getCount() {
+		int total = 0;
+		DBConn.openConn();
+		ResultSet rs = DBConn.query("SELECT COUNT(*) AS Total FROM Pirate");
+		try {
+			while(rs.next())
+				total = rs.getInt("Total");
+		} catch (SQLException e) {
+			Filo.log("");
+		}
+		return total;
 	}
 }
