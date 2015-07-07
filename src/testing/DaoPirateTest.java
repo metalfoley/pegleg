@@ -75,17 +75,17 @@ public class DaoPirateTest {
 
 	@Test
 	public void testCreatePiratePos() {
-		pirate = DaoPirate.createPirate();
+		pirate = DaoPirate.createPirate("a");
 		assertEquals(0, pirate.getID());
 		assertEquals("", pirate.getFirstName());
 		assertEquals("", pirate.getLastName());
-		assertEquals("", pirate.getShipName());
+		assertEquals("a", pirate.getShipName());
 		assertEquals("", pirate.getPirateName());
 	}
 	
 	@Test
 	public void testCreatePirateNeg() {
-		pirate = DaoPirate.createPirate();
+		pirate = DaoPirate.createPirate("a");
 		assertNotEquals(5, pirate.getID());
 		assertNotEquals("jgfdfk", pirate.getFirstName());
 		assertNotEquals("dfgg", pirate.getLastName());

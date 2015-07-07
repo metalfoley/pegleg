@@ -21,7 +21,7 @@ public class DaoPirate {
 	 */
 	public static ArrayList<Pirate> getAllPirates() {
 		DBConn.openConn();
-		ResultSet rs = DBConn.query("SELECT * FROM Pirate");
+		ResultSet rs = DBConn.query("SELECT p.ID,p.FirstName,p.LastName,p.ShipName,p.PirateName FROM Pirate AS p");
 		return ExtractPirate.extractAllPirates(rs);
 	}
 	
@@ -32,7 +32,7 @@ public class DaoPirate {
 	 */
 	public static Pirate getPirate(int id) {
 		DBConn.openConn();
-		ResultSet rs = DBConn.query("SELECT * FROM Pirate WHERE ID=" + id);
+		ResultSet rs = DBConn.query("SELECT p.ID,p.FirstName,p.LastName,Ship.ShipName,p.PirateName FROM Pirate AS p INNER JOIN Ship ON p.ShipName = Ship.ID WHERE p.ID=" + id);
 		return ExtractPirate.extractPirate(rs);
 	}
 	
@@ -71,11 +71,11 @@ public class DaoPirate {
 	 * Create a blank pirate if no pirate exists
 	 * @return
 	 */
-	public static Pirate createPirate() {
+	public static Pirate createPirate(String name) {
 		Pirate p = new Pirate();
 		p.setFirstName("");
 		p.setLastName("");
-		p.setShipName("");
+		p.setShipName(name);
 		p.setPirateName("");
 		return p;
 	}
@@ -95,4 +95,5 @@ public class DaoPirate {
 		}
 		return total;
 	}
+
 }

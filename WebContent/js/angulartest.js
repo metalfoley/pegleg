@@ -5,6 +5,10 @@
 	var pirateCtrl = function($scope, $http, $timeout) {
 		$scope.tableHide = true;
 		
+		var curComplete = function(response) {
+			$scope.currency = response.data;
+		}
+		
 		var complete = function(response) {
 			$scope.pirates = response.pirates;
 			$scope.startFade = true;
@@ -14,25 +18,14 @@
 			}, 1500);
 		}
 		
-		var onError = function(){
+		var onError = function(reason){
 			$scope.error = "Yarr...could not retrieve me matey's!";
 		}
 		
-		if(localStorage.getItem("pirates") === null) {
-			$http.get("http://localhost:8080/RestExample/api/getpirates")
-				.success(complete)
-				.error(onError);
-		}
+		$http.get("http://localhost:8080/RestExample/api/getpirates")
+			.success(complete)
+			.error(onError);
 	}
-	
-//	// editController
-//	var editCtrl = function ($scope, $http, $location) {
-//		$http.get("http://localhost:8080/RestExample/api/getpirate/" + $location.search().id)
-//			.success(function(response) {
-//				$scope.pirate = response.pirate;
-//			});
-//	}
-//	
+
 	pirateApp.controller("pirateCtrl",pirateCtrl);
-	pirateApp.controller("editCtrl",editCtrl);
 }());

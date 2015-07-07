@@ -8,7 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import program.Pirate;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import base.Filo;
+import dao.DaoCurrency;
 import dao.DaoPirate;
 
 /**
@@ -33,7 +38,18 @@ public class pirateEdit extends HttpServlet {
 		if(request.getParameter("id") != null) {
 			request.setAttribute("pirate", DaoPirate.getPirate(Integer.parseInt(request.getParameter("id"))));
 		} else {
-			request.setAttribute("pirate", DaoPirate.createPirate());
+			JSONParser jsonParser = new JSONParser();
+			String ship = null;
+			int doubloons = 0;
+			try {
+				JSONObject jsonObject = (JSONObject) jsonParser.parse(request.getParameter("ships"));
+				ship = (String) jsonObject.get("ship");
+				doubloons = Integer.parseInt((String) jsonObject.get("doubloons"));
+				DaoCurrency.updateDoubloons(doubloons);
+			} catch (ParseException e) {
+				Filo.log("pirateEdit doGet: " + e.getMessage());
+			}
+			request.setAttribute("pirate", DaoPirate.createPirate(ship));
 		}
 		request.getRequestDispatcher("/WEB-INF/edit.jsp").forward(request, response);
 	}

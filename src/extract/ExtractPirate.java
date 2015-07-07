@@ -24,7 +24,7 @@ public class ExtractPirate {
 				pirates.add(pirate);
 			}
 		} catch (SQLException e) {
-			Filo.log(e.getMessage());
+			Filo.log("extractAllPirates" + e.getMessage());
 		} finally {
 			DBConn.closeConn();
 		}
@@ -43,7 +43,7 @@ public class ExtractPirate {
 				pirate.setPirateName(rs.getString("PirateName"));
 			}
 		} catch (SQLException e) {
-			Filo.log(e.getMessage());
+			Filo.log("extractPirate" + e.getMessage());
 		} finally {
 			DBConn.closeConn();
 		}
