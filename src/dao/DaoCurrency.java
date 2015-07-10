@@ -2,19 +2,20 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 import base.DBConn;
 import base.Filo;
 
 public class DaoCurrency {
 	
-	public static int getTotalCurrency() {
-		int total = 0;
+	public static double getTotalCurrency() {
+		double total = 0;
 		DBConn.openConn();
 		ResultSet rs = DBConn.query("SELECT Currency From Currency");
 		try {
 			while(rs.next())
-				total = rs.getInt("Currency");
+				total = rs.getDouble("Currency");
 		} catch (SQLException e) {
 			Filo.log(e.getMessage());
 		}

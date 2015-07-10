@@ -32,7 +32,7 @@ public class DaoPirate {
 	 */
 	public static Pirate getPirate(int id) {
 		DBConn.openConn();
-		ResultSet rs = DBConn.query("SELECT p.ID,p.FirstName,p.LastName,Ship.ShipName,p.PirateName FROM Pirate AS p INNER JOIN Ship ON p.ShipName = Ship.ID WHERE p.ID=" + id);
+		ResultSet rs = DBConn.query("SELECT p.ID,p.FirstName,p.LastName,p.ShipName,p.PirateName FROM Pirate AS p WHERE p.ID=" + id);
 		return ExtractPirate.extractPirate(rs);
 	}
 	

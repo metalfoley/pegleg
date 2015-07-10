@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     <%@ include file="../includes/header.jsp" %>
 	<body ng-app="pirateApp" ng-controller="pirateCtrl">
         <div class="container col-md-12" id="maincontainer">
             <div id="mainbg">
             	<div class="mainHead clearfix">
 	            	<h1 class="pull-right">Ahoy Capatin WoodenLeg!</h1>
-	            	<p><img src="img/logo.png" alt="Logo" />Booty Management System</p>
+	            	<p><a href="home"><img src="img/logo.png" alt="Logo" /></a>Booty Management System</p>
             	</div>
             	<div class="mainBody" >
-            		<h3>Total Currency = ${currency}</h3>
+            		<h3>Total Currency = <span id="totalCurrency">
+            			<fmt:setLocale value="en_US"/>
+            			<fmt:formatNumber value="${currency}" type="currency"/></span>
+            		</h3>
             		<button type="button" class="btn btn-danger btn-sm btn-convert" data-toggle="modal" data-target="#myModal">
 					  Convert Ye' Ol' Booty
 					</button>
@@ -56,10 +60,10 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Doubloons to Dollars</h4>
-        <h2>Total Doubloons: ${doubloons}</h2>
+        <h2>Total Doubloons: <span id="totalDoubloons">${doubloons}</span></h2>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="updateCurrency" method="post">
 			<label for="dtod">Doubloons: </label>
 			<input type="text" name="dtod" id="dtod" ng-model="number"/>
 			<button type="submit" id="getConversion">Submit</button>
