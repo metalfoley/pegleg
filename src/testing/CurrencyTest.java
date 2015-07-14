@@ -13,59 +13,46 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.mockito.Mockito;
 
+import base.DBConn;
 import dao.DaoCurrency;
 
 public class CurrencyTest {
-	private static double currency;
-	private static int doubloon;
+	private Integer expectedDoubloon;
+	private Double expectedCurrency;
 	private int updateDoubloon = 225;
+	private DaoCurrency dc = new DaoCurrency();
 	private ResultSet rs;
-	private static DaoCurrency dc = new DaoCurrency();
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		currency = dc.getTotalCurrency();
-		doubloon = dc.getTotalDoubloons();
-	}
-	
-	@AfterClass
-	public static void teardownAfterClass() throws Exception {
-		dc.updateCurrency(currency, doubloon);
-	}
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws SQLException {
+		expectedCurrency = 458.29;
+		expectedDoubloon = 132;
 		rs = Mockito.mock(ResultSet.class);
-		try {
-			Mockito.when(rs.getDouble("Currency")).thenReturn(458.29);
-			Mockito.when(rs.getInt("Doubloon")).thenReturn(132);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
+		DBConn db = Mockito.mock(DBConn.class);
 	}
 
 	@Test
 	@Category(PositiveTestsCategory.class)
 	public void testTotalCurrencyPos() {
-		assertEquals(458.29,currency,.01);
+		assertEquals(458.29,dc.getTotalCurrency(),.01);
 	}
 	
 	@Test
 	@Category(NegativeTestsCategory.class)
 	public void testTotalCurrencyNeg() {
-		assertNotEquals(458.28,currency,.01);
+		assertNotEquals(458.28,expectedCurrency,.01);
 	}
 	
 	@Test
 	@Category(PositiveTestsCategory.class)
 	public void testTotalDoubloonPos() {
-		assertEquals(132,doubloon);
+		assertEquals(new Integer(132) ,dc.getTotalDoubloons());
 	}
 	
 	@Test
 	@Category(NegativeTestsCategory.class)
 	public void testTotalDoubloonNeg() {
-		assertNotEquals(131,doubloon);
+		assertNotEquals(new Integer(131),dc.getTotalDoubloons());
 	}
 	
 	@Test

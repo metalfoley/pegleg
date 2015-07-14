@@ -7,9 +7,9 @@ import base.DBConn;
 import base.Filo;
 
 public class DaoCurrency {
-	
+	DBConn dbConn = new DBConn();
+
 	public Double getTotalCurrency() {
-		DBConn dbConn = new DBConn();
 		return dbConn.query("SELECT Currency From Currency", new ExtractCurrency().new ExtractDouble());
 	}
 	
@@ -19,7 +19,6 @@ public class DaoCurrency {
 	}
 
 	public void updateDoubloons(int dou) {
-		DBConn dbConn = new DBConn();
 		try {
 			dbConn.update("UPDATE Currency SET Doubloons = Doubloons + " + dou);
 			Filo.log("UPDATE Currency SET Doubloons = Doubloons + " + dou);
@@ -30,7 +29,6 @@ public class DaoCurrency {
 	
 	public void updateCurrency(double currency, int doubloon) {
 		String query = String.format("UPDATE Currency SET Currency=%f,Doubloons=%d WHERE ID=1", currency, doubloon);
-		DBConn dbConn = new DBConn();
 		try {
 			dbConn.update(query);
 		} catch (SQLException e) {
