@@ -1,53 +1,41 @@
 package dao;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 
+import extract.ExtractCurrency;
 import base.DBConn;
 import base.Filo;
 
 public class DaoCurrency {
 	
-	public static double getTotalCurrency() {
-		double total = 0;
-		DBConn.openConn();
-		ResultSet rs = DBConn.query("SELECT Currency From Currency");
-		try {
-			while(rs.next())
-				total = rs.getDouble("Currency");
-		} catch (SQLException e) {
-			Filo.log(e.getMessage());
-		}
-		DBConn.closeConn();
-		return total;
+	public Double getTotalCurrency() {
+		DBConn dbConn = new DBConn();
+		return dbConn.query("SELECT Currency From Currency", new ExtractCurrency().new ExtractDouble());
 	}
 	
-	public static int getTotalDoubloons() {
-		int total = 0;
-		DBConn.openConn();
-		ResultSet rs = DBConn.query("SELECT Doubloons From Currency");
-		try {
-			while(rs.next())
-				total = rs.getInt("Doubloons");
-		} catch (SQLException e) {
-			Filo.log(e.getMessage());
-		}
-		DBConn.closeConn();
-		return total;
+	public Integer getTotalDoubloons() {
+		DBConn dbConn = new DBConn();
+		return dbConn.query("SELECT Doubloons From Currency", new ExtractCurrency().new ExtractInteger());
 	}
-	
-	
-	
-	public static void updateDoubloons(int dou) {
-		DBConn.openConn();
+
+	public void updateDoubloons(int dou) {
+		DBConn dbConn = new DBConn();
 		try {
-			DBConn.update("UPDATE Currency SET Doubloons = Doubloons + " + dou);
+			dbConn.update("UPDATE Currency SET Doubloons = Doubloons + " + dou);
 			Filo.log("UPDATE Currency SET Doubloons = Doubloons + " + dou);
 		} catch (SQLException e) {
 			Filo.log("updateDoubloons: " + e.getMessage());
 		}
-		DBConn.closeConn();
+	}
+	
+	public void updateCurrency(double currency, int doubloon) {
+		String query = String.format("UPDATE Currency SET Currency=%f,Doubloons=%d WHERE ID=1", currency, doubloon);
+		DBConn dbConn = new DBConn();
+		try {
+			dbConn.update(query);
+		} catch (SQLException e) {
+			Filo.log("updateCurrency: " + e.getMessage());
+		}
 	}
 		
 }

@@ -21,9 +21,10 @@ public class TotalCurrency {
 	  @GET
 	  @Produces("application/json")
 	  public Response getPiratesResponse() throws JSONException {
+		DaoCurrency dc = new DaoCurrency();
 		JSONObject jsonObject = new JSONObject();
 		
-		jsonObject.put("currency", DaoCurrency.getTotalCurrency()); 
+		jsonObject.put("currency", dc.getTotalCurrency()); 
  
 		return Response.status(200).entity(jsonObject.toString()).type(MediaType.APPLICATION_JSON_TYPE).build();
 	  }

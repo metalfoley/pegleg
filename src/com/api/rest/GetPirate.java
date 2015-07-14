@@ -21,8 +21,9 @@ package com.api.rest;
 		  @GET
 		  @Produces("application/json")
 		  public Response getPiratesResponse(@PathParam("pirateID") int pirateID) throws JSONException {
+			DaoPirate dp = new DaoPirate();
 			JSONObject jsonObject = new JSONObject();
-			Pirate pirate = DaoPirate.getPirate(pirateID);
+			Pirate pirate = dp.getPirate(pirateID);
 			jsonObject.put("id", pirate.getID());
 			jsonObject.put("firstName", pirate.getFirstName());
 			jsonObject.put("lastName", pirate.getLastName());

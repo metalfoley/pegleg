@@ -66,7 +66,7 @@
         <form action="updateCurrency" method="post">
 			<label for="dtod">Doubloons: </label>
 			<input type="text" name="dtod" id="dtod" ng-model="number"/>
-			<button type="submit" id="getConversion">Submit</button>
+			<button type="submit" id="getConversion">Sell</button>
 		</form>
 		<p id="conversion">{{number}}</p>
       </div>

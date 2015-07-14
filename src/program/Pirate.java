@@ -9,6 +9,13 @@ public class Pirate {
 	private String pirateName;
 	
 	public Pirate() {}
+	
+	public Pirate(String firstName, String lastName, String shipName, String pirateName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.shipName = shipName;
+		this.pirateName = pirateName;
+	}
 
 	public int getID() {
 		return ID;

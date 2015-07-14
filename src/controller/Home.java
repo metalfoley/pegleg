@@ -29,9 +29,10 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DaoCurrency dc = new DaoCurrency();
 		request.setAttribute("title", "Home");
-		request.setAttribute("currency", DaoCurrency.getTotalCurrency());
-		request.setAttribute("doubloons", DaoCurrency.getTotalDoubloons());
+		request.setAttribute("currency", dc.getTotalCurrency());
+		request.setAttribute("doubloons", dc.getTotalDoubloons());
 		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 	}
 
