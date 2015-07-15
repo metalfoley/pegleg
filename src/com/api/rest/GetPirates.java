@@ -16,16 +16,26 @@ import dao.DaoPirate;
  
 @Path("/getpirates")
 public class GetPirates {
+	  private DaoPirate dp;
+	  
+	  public GetPirates() {
+		  setDaoPirate(new DaoPirate());
+	  }
  
 	  @GET
 	  @Produces("application/json")
 	  public Response getPiratesResponse() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
-		//JSONArray ja = new JSONArray();
-		DaoPirate dp = new DaoPirate();
-		//ja.put(dp.getAllPirates());
-		jsonObject.put("pirates", dp.getAllPirates()); 
+		jsonObject.put("pirates", getDaoPirate().getAllPirates()); 
  
 		return Response.status(200).entity(jsonObject.toString()).type(MediaType.APPLICATION_JSON_TYPE).build();
 	  }
+
+	public DaoPirate getDaoPirate() {
+		return dp;
+	}
+
+	public void setDaoPirate(DaoPirate dp) {
+		this.dp = dp;
+	}
 }

@@ -32,7 +32,8 @@ public class Home extends HttpServlet {
 		DaoCurrency dc = new DaoCurrency();
 		request.setAttribute("title", "Home");
 		request.setAttribute("currency", dc.getTotalCurrency());
-		request.setAttribute("doubloons", dc.getTotalDoubloons());
+		DaoCurrency dc2 = new DaoCurrency();
+		request.setAttribute("doubloons", dc2.getTotalDoubloons());
 		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 	}
 

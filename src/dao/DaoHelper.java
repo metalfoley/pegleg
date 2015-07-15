@@ -1,7 +1,9 @@
 package dao;
 
-import extract.ExtractHelper;
+import java.sql.PreparedStatement;
+
 import base.DBConn;
+import extract.ExtractHelper;
 
 public class DaoHelper {
 
@@ -9,7 +11,7 @@ public class DaoHelper {
 	 * Get number of columns
 	 */
 	public Integer getCount() {
-		DBConn dbConn = new DBConn();		
+		DBConn dbConn = new DBConn();
 		return dbConn.query("SELECT COUNT(ID) AS Total FROM Pirate",new ExtractHelper());
 	}
 }

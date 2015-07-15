@@ -11,6 +11,7 @@ import org.junit.runners.Suite;
 	PirateArrayListTest.class,
 	ServletTest.class,
 	CurrencyTest.class,
+	WebServiceTest.class,
 	PirateTest.class})
 public class NegativeSuite {
 

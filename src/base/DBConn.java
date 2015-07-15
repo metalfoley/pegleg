@@ -41,13 +41,20 @@ public class DBConn {
 		closeConn();
 	}
 	
+	/**
+	 * Returns a type depending on the interface generic used
+	 * @param s - The query being used
+	 * @param extractor - The interface used
+	 * @return
+	 */
 	public <T> T query(String s, Iextractor<T> extractor) 
 	{		
 		T extracted = null;
 		try
 		{
 			PreparedStatement ps = getConn().prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
-			extracted = extractor.extract(ps.executeQuery());
+			ResultSet rs = ps.executeQuery();
+			extracted = extractor.extract(rs);
 		}
 		catch (SQLException ex)
 		{

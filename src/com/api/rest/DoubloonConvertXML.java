@@ -7,17 +7,6 @@ import javax.ws.rs.Produces;
  
 @Path("/doubloonconvert/xml")
 public class DoubloonConvertXML {
-	@GET
-	@Produces("application/xml")
-	public String doubloonToDollar() {
- 
-		Double doubloon = 10.00;
-		Double dollar;
-		dollar = doubloon / 10;
- 
-		String result = "@Produces(\"application/xml\") Output: \n\nDoubloon to Dollar Converter Output: \n\n" + doubloon;
-		return "<doubloonToDollarservice>" + "<dollar>" + dollar + "</dollar>" + "<doubloonToDollarOutput>" + result + "</doubloonToDollarOutput>" + "</doubloonToDollarservice>";
-	}
  
 	@Path("{doubloon}")
 	@GET
@@ -26,7 +15,6 @@ public class DoubloonConvertXML {
 		Double dollar;
 		dollar = doubloon / 10;
  
-		String result = "@Produces(\"application/xml\") Output: \n\nDoubloon to Dollar Converter Output: \n\n" + doubloon;
-		return "<doubloonToDollarservice>" + "<dollar>" + dollar + "</dollar>" + "<doubloonToDollarOutput>" + result + "</doubloonToDollarOutput>" + "</doubloonToDollarservice>";
+		return "<doubloonToDollarservice>" + "<dollar>" + dollar + "</dollar>" + "<doubloonToDollarOutput>" + doubloon + "</doubloonToDollarOutput>" + "</doubloonToDollarservice>";
 	}
 }

@@ -12,17 +12,29 @@ import org.json.JSONObject;
  
 @Path("/doubloonconvert/json")
 public class DoubloonConvert {
- 
+	  private JSONObject jsonObject;
+	  
+	  public DoubloonConvert() {
+		  setJsonObject(new JSONObject());
+	  }
+
 	  @Path("{doubloon}")
 	  @GET
 	  @Produces("application/json")
 	  public Response doubloonToDollarInput(@PathParam("doubloon") Double doubloon) throws JSONException {
-		JSONObject jsonObject = new JSONObject();
 		Double dollar;
 		dollar =  doubloon / 10; 
-		jsonObject.put("doubloon", doubloon); 
-		jsonObject.put("dollar", dollar);
+		getJsonObject().put("doubloon", doubloon); 
+		getJsonObject().put("dollar", dollar);
  
-		return Response.status(200).entity(jsonObject.toString()).type(MediaType.APPLICATION_JSON_TYPE).build();
+		return Response.status(200).entity(getJsonObject().toString()).type(MediaType.APPLICATION_JSON_TYPE).build();
 	  }
+
+	public JSONObject getJsonObject() {
+		return jsonObject;
+	}
+
+	public void setJsonObject(JSONObject jsonObject) {
+		this.jsonObject = jsonObject;
+	}
 }

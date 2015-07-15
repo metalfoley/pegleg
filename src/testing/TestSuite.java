@@ -8,6 +8,8 @@ import org.junit.runners.Suite;
 	PirateArrayListTest.class,
 	CurrencyTest.class,
 	ServletTest.class,
+	DbConnTest.class,
+	WebServiceTest.class,
 	PirateTest.class})
 public class TestSuite {
 

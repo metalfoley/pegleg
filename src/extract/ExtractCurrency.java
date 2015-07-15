@@ -9,7 +9,7 @@ import base.Filo;
 
 public class ExtractCurrency {
 
-	public final class ExtractDouble implements Iextractor<Double> {
+	public class ExtractDouble implements Iextractor<Double> {
 		public Double extract(ResultSet rs) {
 			Double currency = null;
 			try {
@@ -22,7 +22,7 @@ public class ExtractCurrency {
 		}
 	}
 	
-	public final class ExtractInteger implements Iextractor<Integer> {
+	public class ExtractInteger implements Iextractor<Integer> {
 		public Integer extract(ResultSet rs) {
 			Integer doubloon = null;
 			try {

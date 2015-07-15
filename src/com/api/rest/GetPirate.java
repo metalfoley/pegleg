@@ -16,14 +16,18 @@ package com.api.rest;
 	 
 	@Path("/getpirate")
 	public class GetPirate {
-	 
+		  private DaoPirate dp;
+		  
+		  public GetPirate() {
+			  setDaoPirate(new DaoPirate());
+		  }
+
 		  @Path("{pirateID}")
 		  @GET
 		  @Produces("application/json")
 		  public Response getPiratesResponse(@PathParam("pirateID") int pirateID) throws JSONException {
-			DaoPirate dp = new DaoPirate();
 			JSONObject jsonObject = new JSONObject();
-			Pirate pirate = dp.getPirate(pirateID);
+			Pirate pirate = getDaoPirate().getPirate(pirateID);
 			jsonObject.put("id", pirate.getID());
 			jsonObject.put("firstName", pirate.getFirstName());
 			jsonObject.put("lastName", pirate.getLastName());
@@ -32,4 +36,12 @@ package com.api.rest;
 	 
 			return Response.status(200).entity(jsonObject.toString()).type(MediaType.APPLICATION_JSON_TYPE).build();
 		  }
+
+		public DaoPirate getDaoPirate() {
+			return dp;
+		}
+
+		public void setDaoPirate(DaoPirate dp) {
+			this.dp = dp;
+		}
 	}
