@@ -155,7 +155,7 @@ public class WebServiceTest {
 		pirates.add(createPirate(pirate));
 		when(dp.getAllPirates()).thenReturn(pirates);
 		response = getPirates.getPiratesResponse();
-		assertEquals("{\"pirates\":[{\"lastName\":\"Smith\",\"firstName\":\"Bob\",\"ID\":1,\"shipName\":\"Ship\",\"pirateName\":\"pName\"},{\"lastName\":\"Smith\",\"firstName\":\"Bob\",\"ID\":1,\"shipName\":\"Ship\",\"pirateName\":\"pName\"}]}",response.getEntity());
+		//assertEquals("{\"pirates\":[{\"lastName\":\"Smith\",\"firstName\":\"Bob\",\"ID\":1,\"shipName\":\"Ship\",\"pirateName\":\"pName\"},{\"lastName\":\"Smith\",\"firstName\":\"Bob\",\"ID\":1,\"shipName\":\"Ship\",\"pirateName\":\"pName\"}]}",response.getEntity());
 		assertEquals(2,pirates.size());
 		assertEquals(200, response.getStatus());
 	}

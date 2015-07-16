@@ -15,7 +15,7 @@ import org.json.JSONObject;
 import dao.DaoCurrency;
 
  
-@Path("/totalcurrency")
+@Path("/totalcurrency/json")
 public class TotalCurrency {
 	  private DaoCurrency dc;
 	  private JSONObject jsonObject;

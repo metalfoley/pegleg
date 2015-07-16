@@ -2,19 +2,15 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
+import program.AddPirate;
 import program.Pirate;
-import base.Filo;
-import dao.DaoCurrency;
 import dao.DaoPirate;
 
 /**
@@ -23,45 +19,41 @@ import dao.DaoPirate;
 @WebServlet("/edit")
 public class pirateEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private DaoPirate dp;
+	private Pirate pirate;
+	private RequestDispatcher dispatcher;
+	private AddPirate addPirate;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public pirateEdit() {
         super();
-        // TODO Auto-generated constructor stub
+        setDp(new DaoPirate());
+        setAddPirate(new AddPirate());
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DaoPirate dp = new DaoPirate();
 		if(request.getParameter("id") != null) {
-			request.setAttribute("pirate", dp.getPirate(Integer.parseInt(request.getParameter("id"))));
+			int id = Integer.parseInt(request.getParameter("id"));
+			pirate = getDp().getPirate(id);
+			request.setAttribute("pirate", pirate);
 		} else {
-			JSONParser jsonParser = new JSONParser();
-			String ship = null;
-			int doubloons = 0;
-			DaoCurrency dc = new DaoCurrency();
-			try {
-				JSONObject jsonObject = (JSONObject) jsonParser.parse(request.getParameter("ships"));
-				ship = (String) jsonObject.get("ship");
-				doubloons = Integer.parseInt((String) jsonObject.get("doubloons"));
-				dc.updateDoubloons(doubloons);
-			} catch (ParseException e) {
-				Filo.log("pirateEdit doGet: " + e.getMessage());
-			}
-			request.setAttribute("pirate", dp.createPirate(ship));
+			String ship = getAddPirate().getShip(request.getParameter("ships"));
+			request.setAttribute("disabled", "disabled");
+			request.setAttribute("pirate", getDp().createPirate(ship));
 		}
-		request.getRequestDispatcher("/WEB-INF/edit.jsp").forward(request, response);
+		setDispatcher(request.getRequestDispatcher("/WEB-INF/edit.jsp"));
+		getDispatcher().forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DaoPirate dp = new DaoPirate();
 		Integer id = null;
 		if(request.getParameter("id") != null)
 			id = Integer.parseInt(request.getParameter("id"));
@@ -69,8 +61,32 @@ public class pirateEdit extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		String shipName = request.getParameter("shipName");
 		String pirateName = request.getParameter("pirateName");
-		dp.insertPirate(new Pirate(firstName,lastName,shipName,pirateName),id);
+		getDp().insertPirate(new Pirate(firstName,lastName,shipName,pirateName),id);
 		response.sendRedirect("home");
+	}
+
+	public DaoPirate getDp() {
+		return dp;
+	}
+
+	public void setDp(DaoPirate dp) {
+		this.dp = dp;
+	}
+
+	public RequestDispatcher getDispatcher() {
+		return dispatcher;
+	}
+
+	public void setDispatcher(RequestDispatcher dispatcher) {
+		this.dispatcher = dispatcher;
+	}
+
+	public AddPirate getAddPirate() {
+		return addPirate;
+	}
+
+	public void setAddPirate(AddPirate addPirate) {
+		this.addPirate = addPirate;
 	}
 
 }

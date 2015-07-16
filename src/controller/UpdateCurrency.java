@@ -41,7 +41,6 @@ public class UpdateCurrency extends HttpServlet {
 		int totalDoubloons = new Integer(request.getParameter("totalDoubloons"));
 
 		dc.updateCurrency(totalCurrency,totalDoubloons);
-		response.sendRedirect("home");
 	}
 
 }

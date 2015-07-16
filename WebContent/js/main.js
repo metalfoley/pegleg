@@ -1,24 +1,13 @@
 $(document).ready(function(){
 	
-//	$("#dtod").keypress(function() {
-//		var total, input;
-//		total = $("#totalDoubloons").text();
-//		input = $("#dtod").val();
-//		if(total >= input) {
-//			$('#getConversion').prop("disabled", false);
-//		} else {
-//			$('#getConversion').prop("disabled", true);
-//		}
-//	});
-	
 	/*************************************************************
 	    	Gets the dollar value of the doubloons entered 
 	 *************************************************************/
 	$("form").on('click', '#getConversion', function(e) {
-		var resultText, input, dtod;
+		var resultText, input, dtod, doubloons;
 		e.preventDefault();
+		doubloons = $("#totalDoubloons").text();
 		dtod = $("#dtod");
-		console.log($("form").serialize());
 		resultText = $("#conversion");
 		input = dtod.val();
 		
@@ -30,6 +19,14 @@ $(document).ready(function(){
 		// Check to make sure input is not left blank
 		else if(input === "" || input === null){
 			resultText.text("You must insert a number.");
+		}
+		
+		else if(input.toString().indexOf(".") != -1) {
+			resultText.text("You must insert a whole number.");
+		}
+		
+		else if(parseInt(input) > parseInt(doubloons) || doubloons <= 0) {
+			resultText.text("You don't have enough doubloons. You must add " + Math.abs(input - doubloons) + " more");
 		}
 		
 		// Make AJAX call
@@ -44,22 +41,27 @@ $(document).ready(function(){
 				  },
 				success: function(data) {
 					var amount = data.dollar.toFixed(2);
-					var totalDoubloons = $("#totalDoubloons").text() - input;
+					var totalDoubloons = doubloons - input;
 					var totalCurrency = parseFloat(amount) + parseFloat($('#totalCurrency').text().replace("$",""));
 					$("#totalDoubloons").text(totalDoubloons);
-					$('#totalCurrency').text("$" + (totalCurrency));
+					$('#totalCurrency').text("$" + totalCurrency.toFixed(2));
 					dtod.attr("value", amount);
 					resultText.text("$" + amount);
 					
-					$.ajax({
-						method: "POST",
-						data: {'dtod': totalCurrency, 'totalDoubloons': totalDoubloons},
-						url: "http://localhost:8080/RestExample/updatecurrency"
-					})
+					updateCurrency(totalCurrency, totalDoubloons);
 				}
 			});
 
 		}
+		
+		function updateCurrency(totalCurrency, totalDoubloons) {
+			$.ajax({
+				method: "POST",
+				data: {'dtod': totalCurrency, 'totalDoubloons': totalDoubloons},
+				url: "http://localhost:8080/RestExample/updatecurrency"
+			})
+		}
+		
 		
 	});
 	

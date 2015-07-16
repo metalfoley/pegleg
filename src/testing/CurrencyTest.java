@@ -1,20 +1,14 @@
 package testing;
 
 import static org.junit.Assert.*;
-import interfaces.Iextractor;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import base.DBConn;

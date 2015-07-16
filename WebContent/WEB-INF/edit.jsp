@@ -21,7 +21,7 @@
 		   		</div>
 		   		<div class="form-group">
 			   		<label for="firstName">Ship Name: </label>
-			   		<input type="text" class="form-control" name="shipName" value="${pirate.getShipName() }" />
+			   		<input type="text" class="form-control" name="shipName" value="${pirate.getShipName() }" ${disabled}/>
 		   		</div>
 		   		<div class="form-group">
 			   		<label for="firstName">Pirate Name: </label>
